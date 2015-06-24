@@ -42,20 +42,18 @@ function addToList (item) {
 function loadData(ticker) {
 	return new Promise(function (res, rej) {
 		SR.AppData.v1.direct.GET(ticker, 'pricedata', {from:"2013-01-01"}).then(function(data){
+			//console.log(data);
 			return (data&&data.response&&data.response.data.length > 0)?[data.response.data[0][1],data.response.data[1][1]]:false;
 		}, function (reason) {
 			console.warn((reason[0].responseJSON)?reason[0].responseJSON.error:[ticker, type , reason]);	
 			rej('Failed getting ' + ticker + '/pricedata due to `' + reason[1] + '`');
 		}).then(function(price){
-			SR.AppData.v1.direct.GET(ticker, 'floatshares', {from:"2013-01-01"}).then(function(data){
-				var shares = (data&&data.response&&data.response.data.length > 0)?[data.response.data[0][1],data.response.data[1][1]]:false;
-				if(shares && price){
-					res([price[1]-price[0],price[0]]);
-				}
-			}, function (reason) {
-				console.warn((reason[0].responseJSON)?reason[0].responseJSON.error:[ticker, type , reason]);	
-				rej('Failed getting ' + ticker + '/floatshares due to `' + reason[1] + '`');
-			});
+			if(price){
+				// console.log(price[0])
+				// console.log(price[1])
+				console.log(price[0]-price[1])
+				res((price[0]-price[1])/price[1]);
+			}
 		})
 		
 	})

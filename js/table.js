@@ -42,7 +42,7 @@ function addToTable (item) {
 								class	: 'industry-tb'
 							},
 							{
-								name 	: numeral(data[0]).format('($0,0.00)'),
+								name 	: numeral(data).format('0,0.00%'),
 								onclick	: false,
 								tooltip	: lists.ticker[item].description,
 								class	: 'number-tb'
