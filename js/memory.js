@@ -50,7 +50,7 @@ function loadData(ticker) {
 			SR.AppData.v1.direct.GET(ticker, 'floatshares', {from:"2013-01-01"}).then(function(data){
 				var shares = (data&&data.response&&data.response.data.length > 0)?[data.response.data[0][1],data.response.data[1][1]]:false;
 				if(shares && price){
-					res([shares[0]*price[0],shares[1]*price[1]]);
+					res([price[1]-price[0],price[0]]);
 				}
 			}, function (reason) {
 				console.warn((reason[0].responseJSON)?reason[0].responseJSON.error:[ticker, type , reason]);	

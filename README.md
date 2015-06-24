@@ -1,4 +1,4 @@
-# StockRender Widget - industry-comparisons
+# StockRender Widget - Losers-Gainers app
 
 Original authors:
 [sk8termatt](https://github.com/sk8termatt),
